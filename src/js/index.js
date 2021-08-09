@@ -1,4 +1,6 @@
-import '../css/styles.css'
+import '../SASS/styles.scss'
 
 // import sayHi from './hi.js'
 // sayHi()
+
+alert('dfdfd')
