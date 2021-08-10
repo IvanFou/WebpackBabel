@@ -13,3 +13,8 @@
 
 
 ![mockup](https://user-images.githubusercontent.com/83996624/128801090-56dfbc95-72cd-4960-aeaa-3900beb009db.png)
+
+## Ambiente de desarrollo y colaboración
+![ambienteDeDesarrollo](https://user-images.githubusercontent.com/83996624/128801193-102f3d4e-0284-46fd-95aa-c39fe7656264.png)
+![gitColaboracion](https://user-images.githubusercontent.com/83996624/128801194-15ef19aa-0f95-4f36-8bda-0572579df670.png)
+
