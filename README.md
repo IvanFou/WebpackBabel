@@ -6,4 +6,4 @@
 - Se cuenta con los loaders de css y sass.
 
 - Mockups:
-![Mockups](mockup/WhatsApp Image 2021-08-08 at 11.50.36 AM (1).jpeg)
+- ![Mockups](mockup/WhatsApp Image 2021-08-08 at 11.50.36 AM (1).jpeg)
