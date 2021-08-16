@@ -1,3 +1,131 @@
-h1 {
-    background-color: pink;
+@import 'variables';
+
+//navbar
+.nav-container{
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+   .del-hogar-img{
+       margin-top: -7px;
+       max-width: 9rem;
+   }   
+   a {
+    text-decoration: none;
+    font-family: $roboto;
+    font-size: 20px;
+    margin-right: 50px;
+    font-weight: bold;
+    color: black;
+    &:hover {
+        color: $footer-background ;
+} 
+}
+.btn_menu {
+    margin-right: 30px;
+    font-size: 25px;
+    color: $footer-background;
+    cursor: pointer;
+    display: none;
+}
+.secciones-navbar.show{
+    top: 65px;
+}
+}
+
+@media (max-width:952px){
+.nav-container .del-hogar-img {
+    padding-left: 10px;
+    font-size: 10px;
+} 
+}
+// @media (max-width:708px){
+//     .btn_menu {
+//         display: inline-flex;
+//     }
+//     .secciones-navbar{
+//         position: fixed;
+//         width: 100vw;
+//         // height: calc(100% - 65px);
+//         background: #414141;
+//         top:-100vh;
+//         text-align: center;
+//         transition: all .4s;
+//         flex-direction: column;
+//     }
+//     // .secciones-navbar{
+//     //     display: flex;
+//     //     flex-direction: column;
+//     // }
+// }
+
+//footer
+.footer-container {
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    padding: .3rem 3rem;
+    background-color: $footer-background;
+    // .image {
+    //     max-width: 200px;
+    // }
+    .del-hogar-img{
+        margin-top: -10px;
+        max-width: 9rem;
+        // margin-bottom: 1rem;
+    }
+    .imagen-y-equipo {
+        color: $text-white;
+        display: flex;
+       flex-direction: column;
+       align-items:initial;
+       gap: .1rem;
+    }
+    .contacto-container {
+        text-align: right;
+        color: $text-white;
+        font-family:$roboto;
+        }
+    .contacto{
+        margin-top: 15px;
+        font-size: 25px;
+        line-height: 30px;
+        font-weight: bold;
+        letter-spacing:2px;
+    }
+       .cel-mail{
+           line-height: 5px;
+       }
+    }
+
+@media (max-width: 718px) {
+    .footer-container{
+        display: flex;
+        flex-direction: column;
+        height: 20rem;
+        align-items: center;
+        height: 14rem;
+        .imagen-y-equipo{
+            display: flex;
+       flex-direction: column;
+       align-items:center;
+        }
+        .contacto-container{
+           text-align: center;
+           .contacto {
+            font-size: 1rem;
+        }
+        }
+        
+        .equipo{
+            text-align: center;
+        }
+        
+    }
+}
+@media (max-width: 500px){
+    .footer-container{
+        display: flex;
+        height: 15rem;
+    }
 }
