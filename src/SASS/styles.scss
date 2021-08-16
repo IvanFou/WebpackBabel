@@ -24,6 +24,10 @@
 .carrousel-content img{
    height: 570px;
 }
+
+.carousel-item{
+    transition: transform 0.9s ease, opacity .5s ease-out;
+}
   
 .main{
     position: absolute /* o absolute*/;
