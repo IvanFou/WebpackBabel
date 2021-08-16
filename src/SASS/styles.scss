@@ -1,3 +1,110 @@
-h1 {
-    background-color: pink;
+@import '_variables';
+
+.button{
+    border-radius: $radius;
+    border: 0;
+    width: 20%;
+    color: white;
+    background-color: crimson;
+}
+
+.button:hover{
+    transform:scale(1.2);
+}
+
+//navbar}
+.navbar{
+    max-height: 170px;
+    margin-top: -6%;
+
+    .del-hogar-img img{
+        width: 38%;
+        height: 38%;
+        margin-top: 6%;
+    }
+    
+    .nav-item{
+        height: 20px;
+        margin-top: -6%;
+    }
+}
+  
+.carrousel-content img{
+   height: 570px;
+}
+  
+.main{
+    position: absolute /* o absolute*/;
+    top: 52%;
+    left: 32%;
+    width: 57%;
+    z-index:50;
+}
+  
+.main__busqueda {
+    outline: none;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 20px;
+    color: black;
+    font-size: 16px;
+    height: 48px;
+    padding: 0 10px;
+    width: 70%;
+}
+
+.recomendacion__container{
+    padding: 3%;
+
+    .recomendacion__container--div{
+       display: grid;
+        grid-template-columns: repeat(2,50%);  
+        padding-left: 5%;
+        padding-top: 2%;
+    }
+
+    .recomendacion__container--img img{
+        width: 90%;
+        height: 90%;
+        border-radius: $radius;
+    }
+
+    .recomendacion__container--descripcion{
+        margin-left: 5%;
+        margin-top: 10%;
+    }
+
+}
+
+.footer-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding-left: 2%;
+    background-color: #705944;
+
+    .imagen-y-equipo{
+        color: #ffffff;
+    }
+
+    .imagen-y-equipo img{
+        width: 10%;
+    }
+
+    .contacto-container{
+        text-align: end;
+        color: #ffffff;
+        font: $roboto;
+        font-size: 14px;
+        line-height: 30px;
+        font-weight: bold;
+        padding-right: 2%;
+    }
+
+    .cel-mail{
+        line-height: 5px;
+    }
 }
