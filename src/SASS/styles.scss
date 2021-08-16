@@ -1,15 +1,7 @@
 @import '_variables';
 
-.button{
-    border-radius: $radius;
-    border: 0;
-    width: 20%;
-    color: white;
-    background-color: crimson;
-}
-
-.button:hover{
-    transform:scale(1.2);
+.btn:hover{
+    transform:scale(1.1);
 }
 
 //navbar}
@@ -38,7 +30,7 @@
     top: 52%;
     left: 32%;
     width: 57%;
-    z-index:50;
+    z-index:1;
 }
   
 .main__busqueda {
@@ -76,6 +68,24 @@
 
 }
 
+.suscripcion__container{
+    padding: 3%;
+
+    .suscripcion__container--descripcion{
+        display: grid;
+        grid-template-columns: repeat(2,50%);
+        padding: 3%;
+    }
+
+    .suscripcion__container--texto{
+        margin-top: 10%;
+    }
+
+    .form-group{
+        width: 80%;
+    }
+}
+
 .footer-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -84,7 +94,7 @@
         -ms-flex-pack: justify;
             justify-content: space-between;
     padding-left: 2%;
-    background-color: #705944;
+    background-color: $footer-background;
 
     .imagen-y-equipo{
         color: #ffffff;
