@@ -15,8 +15,8 @@ addEventListener('DOMContentLoaded', () => {
 const buscarBar = document.getElementById('search_bar'),
     enviarBtn = document.getElementById('submit_btn'),
     randomBtn = document.getElementById('random_btn'),
-    resultadoPlatillos = document.getElementById('platillos-encontrados'),
     avisoBusqueda = document.getElementById('mensaje-buscar'),
+    resultadoPlatillos = document.getElementById('platillos-encontrados'),
     detallesPlatillo = document.getElementById('platillo-seleccionado');
 
 
@@ -65,7 +65,7 @@ const buscarPlatillo = event => {
     }
 };
 
-
+/* 
 // Trae la informacion de un platillo Random y lo agrega
 const buscarPlatilloRandom = (e) => {
     resultadoPlatillos.innerHTML = '';
@@ -76,6 +76,38 @@ const buscarPlatilloRandom = (e) => {
             const meal = data.meals[0];
             agregarElemento(meal);
         });
+
+};
+*/
+
+// Trae la informacion de 8 platillos Random y los agrega
+const buscarPlatilloRandom = (e) => {
+    resultadoPlatillos.innerHTML = '';
+    avisoBusqueda.innerHTML = '';
+    const meals = []
+    for (let i = 1; i <= 8; i++) {
+        fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+            .then(response => response.json())
+            .then(data => {
+                const meal = data.meals[0];
+                resultadoPlatillos.innerHTML = meal
+                console.log(meal)
+                meals.push(meal)
+            })
+            .then(data => {
+                console.log(meals);
+                resultadoPlatillos.innerHTML = meals
+                    .map(meal => `
+                    <div class="meal">
+                      <img src="${meal.strMealThumb}" alt="${meal.strMeal}" id-meal-img="${meal.idMeal}"/>
+                      <div class="meal-info" >
+                        <h3 id-meal-name="${meal.idMeal}">${meal.strMeal}</h3>
+                      </div>
+                    </div>
+                  `).join('');
+
+            });
+    }
 
 };
 
@@ -89,16 +121,7 @@ const encontrarPlatilloPorId = idMeal => {
         });
 };
 
-const extraerIngredientes = meal => {
-    const ingredientes = [];
-    for (let i = 1; i <= 20; i++) {
-        if (meal[`strIngredient${i}`]) {
-            ingredientes.push(`${meal[`strIngredient${i}`]}: <br> ${meal[`strMeasure${i}`]}`);
-        } else {
-            break;
-        }
-    }
-}
+
 // Agrega el elemento al DOM de la pagina
 const agregarElemento = meal => {
     const ingredientesArray = [];
@@ -126,11 +149,16 @@ const agregarElemento = meal => {
                     ${ingredientesArray.map(ingrediente => `<li>${ingrediente}</li>`).join('')}
                 </ul>
             </div>
+            <iframe width="420" height="315"
+                    src="https://www.youtube.com/embed/${meal.strYoutube.slice(32)}"
+                    frameborder="0" allowfullscreen>
+            </iframe>
         </div>
     `;
 };
 
-// Event listeners
+
+// Event listener
 enviarBtn.addEventListener('submit', buscarPlatillo);
 
 randomBtn.addEventListener('click', buscarPlatilloRandom);
