@@ -1,16 +1,15 @@
 
-// import '../SASS/styles.scss'
+import '../SASS/styles.scss'
 
-addEventListener('DOMContentLoaded', () => {
+addEventListener('DOMContentLoaded',()=> {
     const btn_menu = document.querySelector('.btn_menu')
-    if (btn_menu) {
-        btn_menu.addEventListener('click', () => {
+    if (btn_menu){
+        btn_menu.addEventListener('click', ()=>{
             const seccionesNavBar = document.querySelector('secciones-navbar')
             seccionesNavBar.classList.toggle('show')
         })
     }
 })
-
 
 const buscarBar = document.getElementById('search_bar'),
     enviarBtn = document.getElementById('submit_btn'),
@@ -46,10 +45,12 @@ const buscarPlatillo = event => {
                     resultadoPlatillos.innerHTML = data.meals
                         .map(meal => `
                     <div class="meal">
+                     <div class="meal__images" >
                       <img src="${meal.strMealThumb}" alt="${meal.strMeal}" id-meal-img="${meal.idMeal}"/>
                       <div class="meal-info" >
-                        <h3 id-meal-name="${meal.idMeal}">${meal.strMeal}</h3>
+                        <h5 id-meal-name="${meal.idMeal}">${meal.strMeal}</h5>
                       </div>
+                    </div>
                     </div>
                   `).join('');
                 }
@@ -112,12 +113,16 @@ const agregarElemento = meal => {
 
     detallesPlatillo.innerHTML = `
         <div class="platillo-seleccionado-detalles">
-            <h2>${meal.strMeal}</h2>
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+         <h2>Receta</h2>
+            <div class="platillo-container">
+            <img class="platillo-img" src="${meal.strMealThumb}" alt="${meal.strMeal}" />
             <div class="platillo-seleccionado-cat-area">
-                ${meal.strCategory ? `<p>Categoría - ${meal.strCategory}</p>` : ''}
-                ${meal.strArea ? `<p>Área - ${meal.strArea}</p>` : ''}
+                <h3>${meal.strMeal}</h3>
+                    ${meal.strCategory ? `<p>Categoría - ${meal.strCategory}</p>` : ''}
+                    ${meal.strArea ? `<p>Área - ${meal.strArea}</p>` : ''}
+                </div>
             </div>
+           
             <div class="platillo-seleccionado-instrucciones">
                 <h2>Instrucciones:</h2>
                 <p>${meal.strInstructions}</p>
