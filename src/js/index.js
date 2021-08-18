@@ -90,7 +90,7 @@ const buscarPlatillo = event => {
             avisoBusqueda.innerHTML = '';
         }, 3000);
     }
-    resultadoPlatillos.scrollIntoView();
+    resultadoPlatillos.scrollIntoView({ behavior: "smooth" });
 };
 
 // Trae la informacion de 8 platillos Random y los agrega
@@ -139,7 +139,7 @@ const buscarPlatilloRandom = (e) => {
             });
 
     }
-    resultadoPlatillos.scrollIntoView();
+    resultadoPlatillos.scrollIntoView({ behavior: "smooth" });
 };
 
 // Trae la informacion del platillo dado su Id y lo agrega
@@ -187,7 +187,7 @@ const agregarElemento = meal => {
             </iframe>
         </div>
     `;
-    detallesPlatillo.scrollIntoView();
+    detallesPlatillo.scrollIntoView({ behavior: "smooth" });
 };
 
 
