@@ -97,19 +97,13 @@
 
 .meal{
     padding: 3%;
-
-    .meal__images{
-        margin-left: 1%;
-        padding-top: 2%;
-    }
-
-    .meal__images img{
+    img{
         width: 100%;
         height: 250px;
         border-radius: $radius;
     }
 
-    .meal__images img:hover{
+     img:hover{
         transform:scale(1.1);
         cursor: pointer;
         margin-bottom: 10px;
