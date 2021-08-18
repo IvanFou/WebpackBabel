@@ -182,6 +182,29 @@
     }
 }
 
+.seccion__quienes{
+    padding-left: 3%;
+
+    .seccion__quienes--images{
+        width: 30%;
+        height: 220px;
+        margin-left: 35%;
+    }
+
+    .seccion__frase{
+        margin-top: -2%;
+        margin-left: 10%;
+        width: 80%;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .seccion__autor{
+        margin-left: 70%;
+        margin-bottom: 50px;
+    }
+}
+
 .footer-container {
     display: -webkit-box;
     display: -ms-flexbox;
