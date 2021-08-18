@@ -31,13 +31,24 @@
     </ul>
     </nav>
 
-   
-
     <!--Carrousel-->
     <section class="carrousel-content">
-      <div class="main">
-        <input class="main__busqueda" type="text" placeholder="¿Que te gustaria cocinar hoy?">
-      </div>
+
+      <div class="contenedor">
+          <div class="flex">
+            <form id="submit_btn" class="flex">
+              <input type="text" class="input__search" id="search_bar" placeholder="Busca el platillo usando una palabra"  aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="search-btn" type="submit" id="button-addon2">
+                  <span>&#128269</span>
+                </button>
+                <button class="random-btn" id="random_btn" type="submit" id="button-addon2">
+                  <span>&#128256</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -62,6 +73,23 @@
     </div>
     </section>
     
+    <section class="comidas__container">
+         <!--BusquedaAPI-->
+      <div class="contenedor__apis">
+            <div id="mensaje-buscar"></div>
+            <div id="platillos-encontrados" class="meals"></div>
+            <div id="platillo-seleccionado"></div>
+      </div>
+       
+      <h2>Comidas mas populares</h2>
+      <figure class="comidas__container--images">
+        <img src="https://www.themealdb.com/images/media/meals/1543774956.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/x0lk931587671540.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/u9l7k81628771647.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/wrpwuu1511786491.jpg" alt="">
+      </figure>
+    </section>
+
     <section class="recomendacion__container">
       <h2>Recomendacion mas popular</h2>
       <div class="recomendacion__container--div">
@@ -77,6 +105,23 @@
            <button type="submit" class="btn btn-primary">Suscribirse</button>
         </section>
       </div>
+    </section>
+
+    <section class="comidas__container">
+      <h2>Comidas mas populares</h2>
+      <figure class="comidas__container--images">
+        <img src="https://www.themealdb.com/images/media/meals/tytyxu1515363282.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/xxyupu1468262513.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/1549542994.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/yvpuuy1511797244.jpg" alt="">
+      </figure>
+      <figure class="comidas__container--images">
+        <img src="https://www.themealdb.com/images/media/meals/pn59o51628769837.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/1548772327.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/tvtxpq1511464705.jpg" alt="">
+        <img src="https://www.themealdb.com/images/media/meals/bc8v651619789840.jpg" alt="">
+      </figure>
+      <button type="submit" class="btn btn-primary">Mostrar otras comidas</button>
     </section>
 
     <section class="suscripcion__container">
@@ -105,6 +150,13 @@
          <br><br> Suscribete a la comunidad de cocina mas grande.</p>
       </section>
     </div>
+    </section>
+
+    <section class="seccion__quienes">
+      <img class="seccion__quienes--images"src="https://imagizer.imageshack.com/img922/7993/MioF7P.png" alt="">
+      <p class="seccion__frase">“Tu trabajo va a ocupar una gran parte de tu vida, y la única forma de estar realmente
+         satisfecho es hacer lo que crees que es un gran trabajo. Y la única forma de hacer un gran trabajo es amar lo que haces”.</p>
+      <p class="seccion__autor">-Steve Jobs</p>
     </section>
 
   <footer class="footer-container">
