@@ -10,6 +10,15 @@ addEventListener('DOMContentLoaded',()=> {
         })
     }
 })
+addEventListener('DOMContentLoaded',()=> {
+    const btn_menu = document.querySelector('.btn_menu')
+    if (btn_menu){
+        btn_menu.addEventListener('click', ()=>{
+            const seccionesNavBar = document.querySelector('secciones-navbar')
+            seccionesNavBar.classList.toggle('show')
+        })
+    }
+})
 
 const buscarBar = document.getElementById('search_bar'),
     enviarBtn = document.getElementById('submit_btn'),
@@ -30,66 +39,66 @@ const buscarPlatillo = event => {
     // Contenido de la barra de busqueda
     const busqueda = buscarBar.value;
 
-    // Si no esta vacia la respuesta hace los div con la info de los platillos
-    if (busqueda.trim()) {
-        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${busqueda}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                avisoBusqueda.innerHTML = '';
-                const headerSearch = document.createElement('h3');
-                const headerSearchText = document.createTextNode(`Resultados para: '${busqueda}'`);
-                headerSearch.appendChild(headerSearchText);
-                avisoBusqueda.appendChild(headerSearch);
-
-                if (data.meals === null) {
-                    avisoBusqueda.innerHTML = '';
-                    const searchNotFound = document.createTextNode('No se encontraron resultados. Intente usando una sola palabra.');
-                    avisoBusqueda.appendChild(searchNotFound)
-                    resultadoPlatillos.innerHTML = '';
-                } else {
-                    resultadoPlatillos.innerHTML = 
-                    data.meals
-                        .map(meal => {
-                            // Agrega un div que contendra varios elementos
-                            const divMeal = document.createElement('div');
-                            divMeal.className = 'meal';
-                            // Imagen del platillo
-                            const imgMeal = document.createElement('img');
-                            imgMeal.src = meal.strMealThumb;
-                            imgMeal.alt = meal.strMeal;
-                            imgMeal.id = `img-${meal.idMeal}`;
-                            // Div donde esta el nombre del platillo
-                            const divMealinfo = document.createElement('div');
-                            divMealinfo.className = 'meal-info';
-                            // Encabezado con el nombre del platillo
-                            const headerMealName = document.createElement('h3');
-                            headerMealName.id = `nme-${meal.idMeal}`;
-                            const headerMealNameText = document.createTextNode(`${meal.strMeal}`);
-                            // Agrega el texto del encabezado al encabezado
-                            headerMealName.appendChild(headerMealNameText);
-                            divMealinfo.appendChild(headerMealName);
-                            // Agrega la imagen y la info con el nombre del platillo al div
-                            divMeal.appendChild(imgMeal);
-                            divMeal.appendChild(divMealinfo);
-                            // Agrega los elementos al div donde se muestran
-                            resultadoPlatillos.appendChild(divMeal);
-                        })
-                }
-            });
-        // Limpia barra de busqueda
-        buscarBar.value = '';
-
-    } else {
-        buscarBar.placeholder = 'Busca el platillo usando una palabra';
-        avisoBusqueda.innerHTML = '';
-        const searchText = document.createTextNode('Utilice una palabra para iniciar la búsqueda');
-        avisoBusqueda.appendChild(searchText);
-        setTimeout(() => {
+// Si no esta vacia la respuesta hace los div con la info de los platillos
+if (busqueda.trim()) {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${busqueda}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
             avisoBusqueda.innerHTML = '';
-        }, 3000);
-    }
-    resultadoPlatillos.scrollIntoView({ behavior: "smooth" });
+            const headerSearch = document.createElement('h3');
+            const headerSearchText = document.createTextNode(`Resultados para: '${busqueda}'`);
+            headerSearch.appendChild(headerSearchText);
+            avisoBusqueda.appendChild(headerSearch);
+
+            if (data.meals === null) {
+                avisoBusqueda.innerHTML = '';
+                const searchNotFound = document.createTextNode('No se encontraron resultados. Intente usando una sola palabra.');
+                avisoBusqueda.appendChild(searchNotFound)
+                resultadoPlatillos.innerHTML = '';
+            } else {
+                resultadoPlatillos.innerHTML = '';
+                data.meals
+                    .map(meal => {
+                        // Agrega un div que contendra varios elementos
+                        const divMeal = document.createElement('div');
+                        divMeal.className = 'meal';
+                        // Imagen del platillo
+                        const imgMeal = document.createElement('img');
+                        imgMeal.src = meal.strMealThumb;
+                        imgMeal.alt = meal.strMeal;
+                        imgMeal.id = `img-${meal.idMeal}`;
+                        // Div donde esta el nombre del platillo
+                        const divMealinfo = document.createElement('div');
+                        divMealinfo.className = 'meal-info';
+                        // Encabezado con el nombre del platillo
+                        const headerMealName = document.createElement('h3');
+                        headerMealName.id = `nme-${meal.idMeal}`;
+                        const headerMealNameText = document.createTextNode(`${meal.strMeal}`);
+                        // Agrega el texto del encabezado al encabezado
+                        headerMealName.appendChild(headerMealNameText);
+                        divMealinfo.appendChild(headerMealName);
+                        // Agrega la imagen y la info con el nombre del platillo al div
+                        divMeal.appendChild(imgMeal);
+                        divMeal.appendChild(divMealinfo);
+                        // Agrega los elementos al div donde se muestran
+                        resultadoPlatillos.appendChild(divMeal);
+                    })
+            }
+        });
+    // Limpia barra de busqueda
+    buscarBar.value = '';
+
+} else {
+    buscarBar.placeholder = 'Busca el platillo usando una palabra';
+    avisoBusqueda.innerHTML = '';
+    const searchText = document.createTextNode('Utilice una palabra para iniciar la búsqueda');
+    avisoBusqueda.appendChild(searchText);
+    setTimeout(() => {
+        avisoBusqueda.innerHTML = '';
+    }, 3000);
+}
+resultadoPlatillos.scrollIntoView({ behavior: "smooth" });
 };
 
 // Trae la informacion de 8 platillos Random y los agrega
@@ -122,7 +131,7 @@ const buscarPlatilloRandom = (e) => {
                     const divMealinfo = document.createElement('div');
                     divMealinfo.className = 'meal-info';
                     // Encabezado con el nombre del platillo
-                    const headerMealName = document.createElement('h3');
+                    const headerMealName = document.createElement('h6');
                     headerMealName.id = `nme-${meal.idMeal}`;
                     const headerMealNameText = document.createTextNode(`${meal.strMeal}`);
                     // Agrega el texto del encabezado al encabezado
@@ -195,7 +204,7 @@ const agregarElemento = meal => {
 
 
 
-const llenarRecomendaciones = (function llenarRecomendacionesPop() {
+(function llenarRecomendacionesPop() {
     divrecomendaciones.innerHTML = '';
     const meals = []
     for (let i = 1; i <= 8; i++) {
