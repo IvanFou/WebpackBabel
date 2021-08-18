@@ -68,6 +68,16 @@
     margin-top: 10px;  
 }
 
+#recomendaciones-populares{
+    display: grid;
+    grid-template-columns: repeat(4, 25%); 
+    margin-top: 10px; 
+
+    h3{
+        font-size: 16px;
+    }
+}
+
 #platillo-seleccionado{
     padding: 3%;
     margin-top: 10px;  
@@ -98,51 +108,28 @@
 .meal{
     padding: 3%;
 
-    .meal__images{
-        margin-left: 1%;
-        padding-top: 2%;
-    }
-
-    .meal__images img{
-        width: 100%;
-        height: 250px;
+    img{
+        width: 90%;
+        height: 220px;
         border-radius: $radius;
     }
 
-    .meal__images img:hover{
+   img:hover{
         transform:scale(1.1);
         cursor: pointer;
         margin-bottom: 10px;
     }
-    
 }
 
 .comidas__container{
     padding: 3%;
-    
-    .comidas__container--images{
-        display: grid;
-        grid-template-columns: repeat(4, 25%);
-        margin-left: 1%;
-        padding-top: 2%;
-    }
-
-    .comidas__container--images img{
-        width: 90%;
-        height: 250px;
-        border-radius: $radius;
-    }
-
-    .comidas__container--images img:hover{
-        transform:scale(1.1);
-        cursor: pointer;
-    }
 }
 
 
 
 .recomendacion__container{
     padding: 3%;
+    margin-top: -5%;
 
     .recomendacion__container--div{
        display: grid;
@@ -184,10 +171,11 @@
 
 .seccion__quienes{
     padding-left: 3%;
+    margin-top: -50px;
 
     .seccion__quienes--images{
         width: 30%;
-        height: 220px;
+        height: 250px;
         margin-left: 35%;
     }
 
