@@ -1,24 +1,15 @@
 
 import '../SASS/styles.scss'
+addEventListener('DOMContentLoaded', () => {
+    const btn_menu = document.querySelector('.btn_menu')
+    if (btn_menu) {
+        btn_menu.addEventListener('click', () => {
+            const seccionesNavBar = document.querySelector('secciones-navbar')
+            seccionesNavBar.classList.toggle('show')
+        })
+    }
+})
 
-addEventListener('DOMContentLoaded',()=> {
-    const btn_menu = document.querySelector('.btn_menu')
-    if (btn_menu){
-        btn_menu.addEventListener('click', ()=>{
-            const seccionesNavBar = document.querySelector('secciones-navbar')
-            seccionesNavBar.classList.toggle('show')
-        })
-    }
-})
-addEventListener('DOMContentLoaded',()=> {
-    const btn_menu = document.querySelector('.btn_menu')
-    if (btn_menu){
-        btn_menu.addEventListener('click', ()=>{
-            const seccionesNavBar = document.querySelector('secciones-navbar')
-            seccionesNavBar.classList.toggle('show')
-        })
-    }
-})
 
 const buscarBar = document.getElementById('search_bar'),
     enviarBtn = document.getElementById('submit_btn'),
@@ -39,66 +30,42 @@ const buscarPlatillo = event => {
     // Contenido de la barra de busqueda
     const busqueda = buscarBar.value;
 
-// Si no esta vacia la respuesta hace los div con la info de los platillos
-if (busqueda.trim()) {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${busqueda}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            avisoBusqueda.innerHTML = '';
-            const headerSearch = document.createElement('h3');
-            const headerSearchText = document.createTextNode(`Resultados para: '${busqueda}'`);
-            headerSearch.appendChild(headerSearchText);
-            avisoBusqueda.appendChild(headerSearch);
-
-            if (data.meals === null) {
+    // Si no esta vacia la respuesta hace los div con la info de los platillos
+    if (busqueda.trim()) {
+        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${busqueda}`)
+            .then(response => response.json())
+            .then(data => {
+                //console.log(data);
                 avisoBusqueda.innerHTML = '';
-                const searchNotFound = document.createTextNode('No se encontraron resultados. Intente usando una sola palabra.');
-                avisoBusqueda.appendChild(searchNotFound)
-                resultadoPlatillos.innerHTML = '';
-            } else {
-                resultadoPlatillos.innerHTML = '';
-                data.meals
-                    .map(meal => {
-                        // Agrega un div que contendra varios elementos
-                        const divMeal = document.createElement('div');
-                        divMeal.className = 'meal';
-                        // Imagen del platillo
-                        const imgMeal = document.createElement('img');
-                        imgMeal.src = meal.strMealThumb;
-                        imgMeal.alt = meal.strMeal;
-                        imgMeal.id = `img-${meal.idMeal}`;
-                        // Div donde esta el nombre del platillo
-                        const divMealinfo = document.createElement('div');
-                        divMealinfo.className = 'meal-info';
-                        // Encabezado con el nombre del platillo
-                        const headerMealName = document.createElement('h3');
-                        headerMealName.id = `nme-${meal.idMeal}`;
-                        const headerMealNameText = document.createTextNode(`${meal.strMeal}`);
-                        // Agrega el texto del encabezado al encabezado
-                        headerMealName.appendChild(headerMealNameText);
-                        divMealinfo.appendChild(headerMealName);
-                        // Agrega la imagen y la info con el nombre del platillo al div
-                        divMeal.appendChild(imgMeal);
-                        divMeal.appendChild(divMealinfo);
-                        // Agrega los elementos al div donde se muestran
-                        resultadoPlatillos.appendChild(divMeal);
-                    })
-            }
-        });
-    // Limpia barra de busqueda
-    buscarBar.value = '';
+                const headerSearch = document.createElement('h3');
+                const headerSearchText = document.createTextNode(`Resultados para: '${busqueda}'`);
+                headerSearch.appendChild(headerSearchText);
+                avisoBusqueda.appendChild(headerSearch);
 
-} else {
-    buscarBar.placeholder = 'Busca el platillo usando una palabra';
-    avisoBusqueda.innerHTML = '';
-    const searchText = document.createTextNode('Utilice una palabra para iniciar la búsqueda');
-    avisoBusqueda.appendChild(searchText);
-    setTimeout(() => {
+                if (data.meals === null) {
+                    avisoBusqueda.innerHTML = '';
+                    const searchNotFound = document.createTextNode('No se encontraron resultados. Intente usando una sola palabra.');
+                    avisoBusqueda.appendChild(searchNotFound)
+                    resultadoPlatillos.innerHTML = '';
+                } else {
+                    resultadoPlatillos.innerHTML = '';
+                    data.meals
+                        .map(meal => llenarDiv(meal, resultadoPlatillos))
+                }
+            });
+        // Limpia barra de busqueda
+        buscarBar.value = '';
+
+    } else {
+        buscarBar.placeholder = 'Busca el platillo usando una palabra';
         avisoBusqueda.innerHTML = '';
-    }, 3000);
-}
-resultadoPlatillos.scrollIntoView({ behavior: "smooth" });
+        const searchText = document.createTextNode('Utilice una palabra para iniciar la búsqueda');
+        avisoBusqueda.appendChild(searchText);
+        setTimeout(() => {
+            avisoBusqueda.innerHTML = '';
+        }, 3000);
+    }
+    resultadoPlatillos.scrollIntoView({ behavior: "smooth" });
 };
 
 // Trae la informacion de 8 platillos Random y los agrega
@@ -116,43 +83,45 @@ const buscarPlatilloRandom = (e) => {
                 meals.push(meal)
             })
             .then(data => {
-                console.log(meals);
+                //console.log(meals);
                 resultadoPlatillos.innerHTML = '';
-                meals.map(meal => {
-                    // Agrega un div que contendra varios elementos
-                    const divMeal = document.createElement('div');
-                    divMeal.className = 'meal';
-                    // Imagen del platillo
-                    const imgMeal = document.createElement('img');
-                    imgMeal.src = meal.strMealThumb;
-                    imgMeal.alt = meal.strMeal;
-                    imgMeal.id = `img-${meal.idMeal}`;
-                    // Div donde esta nombre del platillo
-                    const divMealinfo = document.createElement('div');
-                    divMealinfo.className = 'meal-info';
-                    // Encabezado con el nombre del platillo
-                    const headerMealName = document.createElement('h6');
-                    headerMealName.id = `nme-${meal.idMeal}`;
-                    const headerMealNameText = document.createTextNode(`${meal.strMeal}`);
-                    // Agrega el texto del encabezado al encabezado
-                    headerMealName.appendChild(headerMealNameText);
-                    divMealinfo.appendChild(headerMealName);
-                    // Agrega la imagen y la info con el nombre del platillo al div
-                    divMeal.appendChild(imgMeal);
-                    divMeal.appendChild(divMealinfo);
-                    // Agrega los elementos al div donde se muestran
-                    resultadoPlatillos.appendChild(divMeal);
-
-                })
+                meals.map(meal => llenarDiv(meal, resultadoPlatillos))
             });
 
     }
     resultadoPlatillos.scrollIntoView({ behavior: "smooth" });
 };
 
+
+const llenarDiv = function (meal, divALlenar) {
+    // Agrega un div que contendra varios elementos
+    const divMeal = document.createElement('div');
+    divMeal.className = 'meal';
+    // Imagen del platillo
+    const imgMeal = document.createElement('img');
+    imgMeal.src = meal.strMealThumb;
+    imgMeal.alt = meal.strMeal;
+    imgMeal.id = `img-${meal.idMeal}`;
+    // Div donde esta nombre del platillo
+    const divMealinfo = document.createElement('div');
+    divMealinfo.className = 'meal-info';
+    // Encabezado con el nombre del platillo
+    const headerMealName = document.createElement('h5');
+    headerMealName.id = `nme-${meal.idMeal}`;
+    const headerMealNameText = document.createTextNode(`${meal.strMeal}`);
+    // Agrega el texto del encabezado al encabezado
+    headerMealName.appendChild(headerMealNameText);
+    divMealinfo.appendChild(headerMealName);
+    // Agrega la imagen y la info con el nombre del platillo al div
+    divMeal.appendChild(imgMeal);
+    divMeal.appendChild(divMealinfo);
+    // Agrega los elementos al div donde se muestran
+    divALlenar.appendChild(divMeal);
+}
+
 // Trae la informacion del platillo dado su Id y lo agrega
 const encontrarPlatilloPorId = idMeal => {
-    console.log('encontrarPlatilloPorId')
+    //console.log('encontrarPlatilloPorId')
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
         .then(response => response.json())
         .then(data => {
@@ -175,16 +144,12 @@ const agregarElemento = meal => {
     // Agrega los detalles del platillo como Categoria Area Instrucciones Ingredientes y Video
     detallesPlatillo.innerHTML = `
         <div class="platillo-seleccionado-detalles">
-         <h2>Receta</h2>
-            <div class="platillo-container">
-            <img class="platillo-img" src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+            <h2>${meal.strMeal}</h2>
+            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
             <div class="platillo-seleccionado-cat-area">
-                <h3>${meal.strMeal}</h3>
-                    ${meal.strCategory ? `<p>Categoría - ${meal.strCategory}</p>` : ''}
-                    ${meal.strArea ? `<p>Área - ${meal.strArea}</p>` : ''}
-                </div>
+                ${meal.strCategory ? `<p>Categoría - ${meal.strCategory}</p>` : ''}
+                ${meal.strArea ? `<p>Área - ${meal.strArea}</p>` : ''}
             </div>
-           
             <div class="platillo-seleccionado-instrucciones">
                 <h2>Instrucciones:</h2>
                 <p>${meal.strInstructions}</p>
@@ -204,7 +169,7 @@ const agregarElemento = meal => {
 
 
 
-(function llenarRecomendacionesPop() {
+const llenarRecomendaciones = (function llenarRecomendacionesPop() {
     divrecomendaciones.innerHTML = '';
     const meals = []
     for (let i = 1; i <= 8; i++) {
@@ -215,33 +180,9 @@ const agregarElemento = meal => {
                 meals.push(meal)
             })
             .then(data => {
-                console.log(meals);
+                //console.log(meals);
                 divrecomendaciones.innerHTML = ''
-                meals.map(meal => {
-                    // Agrega un div que contendra varios elementos
-                    const divMeal = document.createElement('div');
-                    divMeal.className = 'meal';
-                    // Imagen del platillo
-                    const imgMeal = document.createElement('img');
-                    imgMeal.src = meal.strMealThumb;
-                    imgMeal.alt = meal.strMeal;
-                    imgMeal.id = `img-${meal.idMeal}`;
-                    // Div donde estara la info del platillo
-                    const divMealinfo = document.createElement('div');
-                    divMealinfo.className = 'meal-info';
-                    // Encabezado con el nombre del platillo
-                    const headerMealName = document.createElement('h3');
-                    headerMealName.id = `nme-${meal.idMeal}`;
-                    const headerMealNameText = document.createTextNode(`${meal.strMeal}`);
-                    // Agrega el texto del encabezado al encabezado
-                    headerMealName.appendChild(headerMealNameText);
-                    divMealinfo.appendChild(headerMealName);
-                    // Agrega la imagen y la info con el nombre del platillo al div
-                    divMeal.appendChild(imgMeal);
-                    divMeal.appendChild(divMealinfo);
-                    // Agrega los elementos al div donde se muestran
-                    divrecomendaciones.appendChild(divMeal);
-                })
+                meals.map(meal => llenarDiv(meal, divrecomendaciones))
 
             });
     }
